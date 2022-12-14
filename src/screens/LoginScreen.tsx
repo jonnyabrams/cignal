@@ -6,7 +6,12 @@ const LoginScreen = () => {
   return (
     <View>
       <StatusBar style="light" />
-      <Text>LoginScreen</Text>
+      <Image
+        source={{
+          uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Signal-Logo.svg/2048px-Signal-Logo.svg.png",
+        }}
+        style={{ width: 200, height: 200 }}
+      />
     </View>
   );
 };

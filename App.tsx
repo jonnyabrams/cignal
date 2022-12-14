@@ -1,14 +1,21 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+import LoginScreen from "./src/screens/LoginScreen";
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
     <NavigationContainer>
-      <View className="items-center justify-center flex-1">
-        <StatusBar style="auto" />
-        <Text className="text-red-500">Oi oi oioioi</Text>
-      </View>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen} />
+      </Stack.Navigator>
+
     </NavigationContainer>
   );
 }
+
+export default App

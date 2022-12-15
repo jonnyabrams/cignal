@@ -16,7 +16,7 @@ const LoginScreen = () => {
         source={{
           uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Signal-Logo.svg/2048px-Signal-Logo.svg.png",
         }}
-        style={{ width: 200, height: 200 }}
+        style={{ width: 200, height: 200, marginBottom: 20, borderRadius: 20 }}
       />
 
       <View style={styles.inputContainer}>
@@ -51,6 +51,12 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "white",
   },
-  inputContainer: {},
-  button: {},
+  inputContainer: {
+    width: 300,
+    
+  },
+  button: {
+    width: 200,
+    marginTop: 10,
+  },
 });

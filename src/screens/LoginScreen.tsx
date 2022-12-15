@@ -7,9 +7,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signIn = () => {
-    
-  }
+  const signIn = () => {};
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -38,6 +36,7 @@ const LoginScreen = () => {
 
       <Button containerStyle={styles.button} onPress={signIn} title="Login" />
       <Button containerStyle={styles.button} type="outline" title="Register" />
+      <View style={{ height: 100 }} />
     </KeyboardAvoidingView>
   );
 };
@@ -50,8 +49,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   inputContainer: {},
-  button: {}
+  button: {},
 });

@@ -33,7 +33,7 @@ const LoginScreen = () => {
       </View>
 
       <Button containerStyle={styles.button} title="Login" />
-      <Button containerStyle={styles.button} type="outline" title="Login" />
+      <Button containerStyle={styles.button} type="outline" title="Register" />
     </View>
   );
 };

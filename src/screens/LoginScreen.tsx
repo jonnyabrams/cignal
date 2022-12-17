@@ -2,8 +2,20 @@ import { View, Text, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { Button, Input, Image } from "@rneui/themed";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-const LoginScreen = () => {
+import { RootStackParamList } from "../../App";
+
+type ProfileScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Login"
+>;
+
+type Props = {
+  navigation: ProfileScreenNavigationProp;
+};
+
+const LoginScreen = ({ navigation }: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -35,7 +47,12 @@ const LoginScreen = () => {
       </View>
 
       <Button containerStyle={styles.button} onPress={signIn} title="Login" />
-      <Button containerStyle={styles.button} type="outline" title="Register" />
+      <Button
+        onPress={() => navigation.navigate("Register")}
+        containerStyle={styles.button}
+        type="outline"
+        title="Register"
+      />
       <View style={{ height: 100 }} />
     </KeyboardAvoidingView>
   );
@@ -53,7 +70,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: 300,
-    
   },
   button: {
     width: 200,

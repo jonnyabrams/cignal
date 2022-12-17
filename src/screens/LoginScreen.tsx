@@ -6,13 +6,13 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "../../App";
 
-type ProfileScreenNavigationProp = NativeStackNavigationProp<
+type LoginScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   "Login"
 >;
 
 type Props = {
-  navigation: ProfileScreenNavigationProp;
+  navigation: LoginScreenNavigationProp;
 };
 
 const LoginScreen = ({ navigation }: Props) => {

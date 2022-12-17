@@ -1,6 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
 
-const RegisterScreen = ({ navigation }) => {
+type RegisterScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Register"
+>;
+
+type Props = {
+  navigation: RegisterScreenNavigationProp;
+};
+
+const RegisterScreen = ({ navigation }: Props) => {
   return (
     <View>
       <Text>RegisterScreen</Text>

@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { useLayoutEffect, useState } from "react";
 
 import { RootStackParamList } from "../../App";
+import { auth } from "../../firebase";
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -25,11 +26,21 @@ const RegisterScreen = ({ navigation }: Props) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerBackTitle: "Back to Login"
-    })
-  }, [navigation])
+      headerBackTitle: "Back to Login",
+    });
+  }, [navigation]);
 
-  const register = () => {};
+  const register = async () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        authUser!.user!.updateProfile({
+          displayName: name,
+          photoURL: imageUrl,
+        });
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -43,29 +54,34 @@ const RegisterScreen = ({ navigation }: Props) => {
           placeholder="Full name"
           autoFocus
           value={name}
+          autoCapitalize="none"
           onChangeText={(text) => setName(text)}
         />
         <Input
           placeholder="Email"
           value={email}
+          autoCapitalize="none"
           onChangeText={(text) => setEmail(text)}
         />
         <Input
           placeholder="Password"
           value={password}
           secureTextEntry
+          autoCapitalize="none"
           onChangeText={(text) => setPassword(text)}
         />
         <Input
           placeholder="Confirm password"
           value={confirmPassword}
           secureTextEntry
+          autoCapitalize="none"
           onChangeText={(text) => setConfirmPassword(text)}
         />
         <Input
           placeholder="Profile picture URL (optional)"
           value={imageUrl}
           onChangeText={(text) => setImageUrl(text)}
+          autoCapitalize="none"
           onSubmitEditing={register}
         />
       </View>

@@ -2,7 +2,7 @@ import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Text, Button, Input } from "@rneui/themed";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 import { RootStackParamList } from "../../App";
 
@@ -22,6 +22,12 @@ const RegisterScreen = ({ navigation }: Props) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitle: "Back to Login"
+    })
+  }, [navigation])
 
   const register = () => {};
 
@@ -70,7 +76,7 @@ const RegisterScreen = ({ navigation }: Props) => {
         onPress={register}
         title="Register"
       />
-      <View style={{ height: 100 }} />
+      <View style={{ height: 200 }} />
     </KeyboardAvoidingView>
   );
 };

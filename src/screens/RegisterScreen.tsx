@@ -36,7 +36,7 @@ const RegisterScreen = ({ navigation }: Props) => {
       .then((authUser) => {
         authUser!.user!.updateProfile({
           displayName: name,
-          photoURL: imageUrl,
+          photoURL: imageUrl || "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
         });
       })
       .catch((error) => alert(error.message));

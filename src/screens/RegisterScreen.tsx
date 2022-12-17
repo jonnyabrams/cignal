@@ -21,11 +21,9 @@ const RegisterScreen = ({ navigation }: Props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [passwordsMatch, setPasswordsMatch] = useState(true)
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
 
-  const register = () => {
-
-  }
+  const register = () => {};
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -72,6 +70,7 @@ const RegisterScreen = ({ navigation }: Props) => {
         onPress={register}
         title="Register"
       />
+      <View style={{ height: 100 }} />
     </KeyboardAvoidingView>
   );
 };
@@ -79,7 +78,18 @@ const RegisterScreen = ({ navigation }: Props) => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
-  container: {},
-  inputContainer: {},
-  button: {}
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    backgroundColor: "white",
+  },
+  inputContainer: {
+    width: 300,
+  },
+  button: {
+    width: 200,
+    marginTop: 10,
+  },
 });

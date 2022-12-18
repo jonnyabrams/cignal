@@ -14,13 +14,15 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-const HomeScreen = ({navigation}: Props) => {
-
+const HomeScreen = ({ navigation }: Props) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      
-    })
-  }, [])
+      title: "Cignal",
+      headerStyle: {backgroundColor: "#fff"},
+      headerTitleStyle: {color: "black"},
+      headerTintColor: "black"
+    });
+  }, []);
 
   return (
     <SafeAreaView>

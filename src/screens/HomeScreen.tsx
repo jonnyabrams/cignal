@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
 import CustomListItem from "../components/CustomListItem";
@@ -37,7 +38,7 @@ const HomeScreen = ({ navigation }: Props) => {
       headerTitleStyle: { color: "black" },
       headerTintColor: "black",
       headerLeft: () => (
-        <View style={{ marginLeft: 20 }}>
+        <View style={{ marginLeft: 10 }}>
           <TouchableOpacity onPress={signOutUser} activeOpacity={0.5}>
             <Avatar
               rounded
@@ -50,8 +51,25 @@ const HomeScreen = ({ navigation }: Props) => {
           </TouchableOpacity>
         </View>
       ),
+      headerRight: () => (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: 80,
+            marginRight: 10
+          }}
+        >
+          <TouchableOpacity activeOpacity={0.5}>
+            <AntDesign name="camerao" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <SimpleLineIcons name="pencil" size={24} color="black" />
+          </TouchableOpacity>
+        </View>
+      ),
     });
-  }, []);
+  }, [navigation]);
 
   return (
     <SafeAreaView>

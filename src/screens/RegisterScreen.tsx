@@ -31,7 +31,10 @@ const RegisterScreen = ({ navigation }: Props) => {
   }, [navigation]);
 
   const register = async () => {
-    auth
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false)
+    }
+    else {auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
         authUser!.user!.updateProfile({
@@ -39,7 +42,7 @@ const RegisterScreen = ({ navigation }: Props) => {
           photoURL: imageUrl || "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
         });
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => alert(error.message));}
   };
 
   return (
@@ -92,6 +95,7 @@ const RegisterScreen = ({ navigation }: Props) => {
         onPress={register}
         title="Register"
       />
+      {!passwordsMatch && <Text style={styles.passwordMismatchMessage}>* Passwords do not match</Text>}
       <View style={{ height: 200 }} />
     </KeyboardAvoidingView>
   );
@@ -114,4 +118,8 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 10,
   },
+  passwordMismatchMessage: {
+    color: "red",
+    marginTop: 10
+  }
 });

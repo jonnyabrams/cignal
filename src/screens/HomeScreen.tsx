@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Avatar } from "@rneui/themed";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState, useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -13,7 +13,7 @@ import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
 import CustomListItem from "../components/CustomListItem";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -25,11 +25,26 @@ type Props = {
 };
 
 const HomeScreen = ({ navigation }: Props) => {
+  const [chats, setChats] = useState<{ id: string; data: any }[]>([]);
+
   const signOutUser = () => {
     auth.signOut().then(() => {
       navigation.replace("Login");
     });
   };
+
+  useEffect(() => {
+    const unsubscribe = db.collection("chats").onSnapshot((snapshot) =>
+      setChats(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
+
+    return unsubscribe;
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -57,13 +72,16 @@ const HomeScreen = ({ navigation }: Props) => {
             flexDirection: "row",
             justifyContent: "space-between",
             width: 80,
-            marginRight: 10
+            marginRight: 10,
           }}
         >
           <TouchableOpacity activeOpacity={0.5}>
             <AntDesign name="camerao" size={24} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("AddChat")} activeOpacity={0.5}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("AddChat")}
+            activeOpacity={0.5}
+          >
             <SimpleLineIcons name="pencil" size={24} color="black" />
           </TouchableOpacity>
         </View>

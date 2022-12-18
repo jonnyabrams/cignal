@@ -63,6 +63,7 @@ const LoginScreen = ({ navigation }: Props) => {
           value={password}
           autoCapitalize="none"
           onChangeText={(text) => setPassword(text)}
+          onSubmitEditing={signIn}
         />
       </View>
 

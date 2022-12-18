@@ -2,9 +2,10 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useLayoutEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, Input } from "@rneui/themed";
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import { RootStackParamList } from "../../App";
+import { db } from "../../firebase";
 
 type AddChatScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -25,9 +26,17 @@ const AddChatScreen = ({ navigation }: Props) => {
     });
   }, [navigation]);
 
-  const createChat = () => {
-    
-  }
+  const createChat = async () => {
+    await db
+      .collection("chats")
+      .add({
+        chatName: input,
+      })
+      .then(() => {
+        navigation.goBack();
+      })
+      .catch((error) => alert(error));
+  };
 
   return (
     <View style={styles.container}>
@@ -35,9 +44,8 @@ const AddChatScreen = ({ navigation }: Props) => {
         placeholder="Enter a chat name"
         value={input}
         onChangeText={(text) => setInput(text)}
-        leftIcon={
-          <Icon name="wechat" size={24} color="#000" />
-        }
+        onSubmitEditing={createChat}
+        leftIcon={<Icon name="wechat" size={24} color="#000" />}
       />
       <Button onPress={createChat} title="Create new chat" />
     </View>

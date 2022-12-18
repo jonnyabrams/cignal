@@ -24,6 +24,12 @@ type Props = {
 };
 
 const HomeScreen = ({ navigation }: Props) => {
+  const signOutUser = () => {
+    auth.signOut().then(() => {
+      navigation.replace("Login");
+    });
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Cignal",
@@ -32,7 +38,7 @@ const HomeScreen = ({ navigation }: Props) => {
       headerTintColor: "black",
       headerLeft: () => (
         <View style={{ marginLeft: 20 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={signOutUser} activeOpacity={0.5}>
             <Avatar
               rounded
               source={{

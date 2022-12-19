@@ -20,6 +20,7 @@ import firebase from "firebase";
 
 import { RootStackParamList } from "../../App";
 import { auth, db } from "../../firebase";
+import { IMessage } from "../typings";
 
 type ChatScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -33,6 +34,7 @@ type Props = {
 
 const ChatScreen = ({ navigation, route }: Props) => {
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState<{ id: string; data: any }[]>([]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -84,6 +86,23 @@ const ChatScreen = ({ navigation, route }: Props) => {
 
     setInput("");
   };
+
+  useLayoutEffect(() => {
+    const unsubscribe = db
+      .collection("chats")
+      .doc(route.params.id)
+      .collection("messages")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setMessages(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+    return unsubscribe;
+  }, [route]);
 
   return (
     <SafeAreaView style={styles.chatScreenView}>

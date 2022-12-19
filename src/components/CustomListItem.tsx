@@ -9,7 +9,7 @@ interface IProps {
 
 const CustomListItem = ({ id, chatName, enterChat}: IProps) => {
   return (
-    <ListItem>
+    <ListItem key={id} bottomDivider>
       <Avatar
         rounded
         source={{
@@ -20,7 +20,7 @@ const CustomListItem = ({ id, chatName, enterChat}: IProps) => {
       />
       <ListItem.Content>
         <ListItem.Title style={{ fontWeight: "800" }}>
-          Everton Chat
+          {chatName}
         </ListItem.Title>
         <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
           Chat about the mighty Blues. Up the Toffees! est. 1978

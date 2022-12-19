@@ -41,6 +41,16 @@ const ChatScreen = ({ navigation, route }: Props) => {
           <AntDesign name="arrowleft" size={24} color="white" />
         </TouchableOpacity>
       ),
+      headerRight: () => (
+        <View style={styles.headerRightIcons}>
+          <TouchableOpacity>
+            <FontAwesome name="video-camera" size={24} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Ionicons name="call" size={24} color="white" />
+          </TouchableOpacity>
+        </View>
+      ),
     });
   }, [navigation]);
 
@@ -62,5 +72,11 @@ const styles = StyleSheet.create({
   },
   headerLeftArrow: {
     marginLeft: 10,
+  },
+  headerRightIcons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: 80,
+    marginRight: 10,
   },
 });

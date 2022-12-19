@@ -89,11 +89,18 @@ const HomeScreen = ({ navigation }: Props) => {
     });
   }, [navigation]);
 
+  const enterChat = (id: string, chatName: string) => {
+    navigation.navigate("Chat", {
+      id,
+      chatName,
+    });
+  };
+
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView style={styles.container}>
         {chats.map(({ id, data: { chatName } }) => (
-          <CustomListItem key={id} id={id} chatName={chatName} enterChat="" />
+          <CustomListItem key={id} id={id} chatName={chatName} enterChat={enterChat} />
         ))}
       </ScrollView>
     </SafeAreaView>
@@ -102,4 +109,8 @@ const HomeScreen = ({ navigation }: Props) => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
+});

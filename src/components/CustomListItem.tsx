@@ -4,12 +4,12 @@ import { ListItem, Avatar } from "@rneui/themed";
 interface IProps {
   id: string;
   chatName: string;
-  enterChat: string;
+  enterChat: (id: string, chatName: string) => void;
 }
 
-const CustomListItem = ({ id, chatName, enterChat}: IProps) => {
+const CustomListItem = ({ id, chatName, enterChat }: IProps) => {
   return (
-    <ListItem key={id} bottomDivider>
+    <ListItem onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
       <Avatar
         rounded
         source={{

@@ -9,7 +9,7 @@ import { db } from "../../firebase";
 
 type AddChatScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "Login"
+  "AddChat"
 >;
 
 type Props = {

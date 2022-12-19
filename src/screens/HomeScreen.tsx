@@ -17,7 +17,7 @@ import { auth, db } from "../../firebase";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "Login"
+  "Home"
 >;
 
 type Props = {

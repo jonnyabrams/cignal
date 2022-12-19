@@ -3,6 +3,7 @@ import { useLayoutEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, Input } from "@rneui/themed";
 import Icon from "react-native-vector-icons/FontAwesome";
+import firebase from "firebase";
 
 import { RootStackParamList } from "../../App";
 import { db } from "../../firebase";
@@ -30,6 +31,7 @@ const AddChatScreen = ({ navigation }: Props) => {
     await db
       .collection("chats")
       .add({
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         chatName: input,
       })
       .then(() => {

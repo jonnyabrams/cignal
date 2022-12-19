@@ -4,10 +4,11 @@ import { ListItem, Avatar } from "@rneui/themed";
 interface IProps {
   id: string;
   chatName: string;
+  chatDesc: string;
   enterChat: (id: string, chatName: string) => void;
 }
 
-const CustomListItem = ({ id, chatName, enterChat }: IProps) => {
+const CustomListItem = ({ id, chatName, chatDesc, enterChat }: IProps) => {
   return (
     <ListItem onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
       <Avatar
@@ -23,7 +24,7 @@ const CustomListItem = ({ id, chatName, enterChat }: IProps) => {
           {chatName}
         </ListItem.Title>
         <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
-          Chat about the mighty Blues. Up the Toffees! est. 1978
+          {chatDesc}
         </ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>

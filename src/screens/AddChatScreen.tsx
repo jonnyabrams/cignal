@@ -20,6 +20,7 @@ type Props = {
 const AddChatScreen = ({ navigation }: Props) => {
   const [input, setInput] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("")
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -34,7 +35,8 @@ const AddChatScreen = ({ navigation }: Props) => {
       .add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         chatName: input,
-        chatDesc: description
+        chatDesc: description,
+        chatImageUrl: imageUrl
       })
       .then(() => {
         navigation.goBack();
@@ -54,9 +56,15 @@ const AddChatScreen = ({ navigation }: Props) => {
         placeholder="Enter a description"
         value={description}
         onChangeText={(text) => setDescription(text)}
-        onSubmitEditing={createChat}
         leftIcon={<Icon name="wechat" size={24} color="#000" />}
       />
+      <Input
+          placeholder="Chat image URL (optional)"
+          value={imageUrl}
+          onChangeText={(text) => setImageUrl(text)}
+          autoCapitalize="none"
+          onSubmitEditing={createChat}
+        />
       <Button onPress={createChat} title="Create new chat" />
     </View>
   );

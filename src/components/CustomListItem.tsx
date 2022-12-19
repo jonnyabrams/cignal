@@ -5,17 +5,24 @@ interface IProps {
   id: string;
   chatName: string;
   chatDesc: string;
+  chatImageUrl: string;
   enterChat: (id: string, chatName: string) => void;
 }
 
-const CustomListItem = ({ id, chatName, chatDesc, enterChat }: IProps) => {
+const CustomListItem = ({
+  id,
+  chatName,
+  chatDesc,
+  chatImageUrl,
+  enterChat,
+}: IProps) => {
   return (
     <ListItem onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
       <Avatar
         rounded
         source={{
           uri:
-            // chatMessages?.[0]?.photoURL ||
+            chatImageUrl ||
             "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
         }}
       />

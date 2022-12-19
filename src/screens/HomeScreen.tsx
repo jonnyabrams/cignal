@@ -102,12 +102,13 @@ const HomeScreen = ({ navigation }: Props) => {
   return (
     <SafeAreaView>
       <ScrollView style={styles.container}>
-        {chats.map(({ id, data: { chatName, chatDesc } }) => (
+        {chats.map(({ id, data: { chatName, chatDesc, chatImageUrl } }) => (
           <CustomListItem
             key={id}
             id={id}
             chatName={chatName}
             chatDesc={chatDesc}
+            chatImageUrl={chatImageUrl}
             enterChat={enterChat}
           />
         ))}

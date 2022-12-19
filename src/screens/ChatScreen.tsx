@@ -20,7 +20,6 @@ import firebase from "firebase";
 
 import { RootStackParamList } from "../../App";
 import { auth, db } from "../../firebase";
-import { IMessage } from "../typings";
 
 type ChatScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -115,13 +114,48 @@ const ChatScreen = ({ navigation, route }: Props) => {
         {/* clicking anywhere outside keyboard dismisses it */}
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <>
-            <ScrollView>{/* chat goes here */}</ScrollView>
+            <ScrollView contentContainerStyle={{ paddingTop: 15 }}>
+              {/* is it the sender of the message? */}
+              {messages.map(({ id, data }) =>
+                data.email === auth?.currentUser?.email ? (
+                  <View key={id} style={styles.sender}>
+                    <Avatar
+                      containerStyle={{
+                        position: "absolute",
+                        bottom: -15,
+                        right: -5,
+                      }}
+                      rounded
+                      size={30}
+                      source={{ uri: data.photoURL }}
+                    />
+                    <Text style={styles.senderText}>{data.message}</Text>
+                  </View>
+                ) : (
+                  <View key={id} style={styles.receiver}>
+                    <Avatar
+                      containerStyle={{
+                        position: "absolute",
+                        bottom: -15,
+                        right: -5,
+                      }}
+                      rounded
+                      size={30}
+                      source={{ uri: data.photoURL }}
+                    />
+                    <Text style={styles.receiverText}>{data.message}</Text>
+                    <Text style={styles.receiverName}>{data.displayName}</Text>
+                  </View>
+                )
+              )}
+            </ScrollView>
             <View style={styles.footer}>
               <TextInput
                 value={input}
                 onChangeText={(text) => setInput(text)}
                 onSubmitEditing={sendMessage}
                 placeholder="Cignal Message"
+                autoCapitalize="none"
                 style={styles.textInput}
               />
               <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
@@ -175,5 +209,42 @@ const styles = StyleSheet.create({
     padding: 10,
     color: "grey",
     borderRadius: 30,
+  },
+  sender: {
+    padding: 15,
+    backgroundColor: "#2B68E6",
+    alignSelf: "flex-end",
+    borderRadius: 20,
+    marginRight: 15,
+    marginBottom: 20,
+    maxWidth: "80%",
+    position: "relative",
+  },
+  senderText: {
+    color: "white",
+    fontWeight: "500",
+    marginBottom: 15,
+  },
+  receiver: {
+    padding: 15,
+    backgroundColor: "#ECECEC",
+    alignSelf: "flex-start",
+    borderRadius: 20,
+    marginLeft: 15,
+    marginBottom: 20,
+    maxWidth: "80%",
+    position: "relative",
+  },
+  receiverText: {
+    color: "black",
+    fontWeight: "500",
+    marginLeft: 10,
+    marginBottom: 15,
+  },
+  receiverName: {
+    left: 10,
+    paddingRight: 10,
+    fontSize: 10,
+    color: "black",
   },
 });

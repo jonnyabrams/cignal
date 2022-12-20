@@ -50,19 +50,22 @@ const AddChatScreen = ({ navigation }: Props) => {
         placeholder="Enter a chat name"
         value={input}
         onChangeText={(text) => setInput(text)}
+        autoCapitalize="none"
         leftIcon={<Icon name="wechat" size={24} color="#000" />}
       />
       <Input
         placeholder="Enter a description"
         value={description}
         onChangeText={(text) => setDescription(text)}
-        leftIcon={<Icon name="wechat" size={24} color="#000" />}
+        autoCapitalize="none"
+        leftIcon={<Icon name="info-circle" size={24} color="#000" />}
       />
       <Input
           placeholder="Chat image URL (optional)"
           value={imageUrl}
           onChangeText={(text) => setImageUrl(text)}
           autoCapitalize="none"
+          leftIcon={<Icon name="image" size={24} color="#000" />}
           onSubmitEditing={createChat}
         />
       <Button onPress={createChat} title="Create new chat" />

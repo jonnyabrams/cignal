@@ -59,7 +59,7 @@ const AddChatScreen = ({ navigation }: Props) => {
           leftIcon={<Icon name="image" size={24} color="#000" />}
           onSubmitEditing={createChat}
         />
-      <Button onPress={createChat} title="Create new chat" />
+      <Button disabled={!input} onPress={createChat} title="Create new chat" />
     </View>
   );
 };

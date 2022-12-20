@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { ListItem, Avatar } from "@rneui/themed";
+import { useEffect, useState } from "react";
+import { db } from "../../firebase";
 
 interface IProps {
   id: string;
@@ -16,8 +18,26 @@ const CustomListItem = ({
   chatImageUrl,
   enterChat,
 }: IProps) => {
+  const [chatMessages, setChatMessages] = useState<any[]>([]);
+
+  useEffect(() => {
+    const unsubscribe = db
+      .collection("chats")
+      .doc(id)
+      .collection("messages")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setChatMessages(snapshot.docs.map((doc) => doc.data()))
+      );
+    return unsubscribe;
+  }, []);
+
   return (
-    <ListItem onPress={() => enterChat(id, chatName, chatImageUrl)} key={id} bottomDivider>
+    <ListItem
+      onPress={() => enterChat(id, chatName, chatImageUrl)}
+      key={id}
+      bottomDivider
+    >
       <Avatar
         rounded
         source={{
@@ -31,7 +51,7 @@ const CustomListItem = ({
           {chatName}
         </ListItem.Title>
         <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
-          {chatDesc}
+          {chatMessages?.[0]?.displayName}: {chatMessages?.[0]?.message}
         </ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>

@@ -6,7 +6,6 @@ import { db } from "../../firebase";
 interface IProps {
   id: string;
   chatName: string;
-  chatDesc: string;
   chatImageUrl: string;
   enterChat: (id: string, chatName: string, chatImageUrl: string) => void;
 }
@@ -14,7 +13,6 @@ interface IProps {
 const CustomListItem = ({
   id,
   chatName,
-  chatDesc,
   chatImageUrl,
   enterChat,
 }: IProps) => {

@@ -6,7 +6,7 @@ interface IProps {
   chatName: string;
   chatDesc: string;
   chatImageUrl: string;
-  enterChat: (id: string, chatName: string) => void;
+  enterChat: (id: string, chatName: string, chatImageUrl: string) => void;
 }
 
 const CustomListItem = ({
@@ -17,7 +17,7 @@ const CustomListItem = ({
   enterChat,
 }: IProps) => {
   return (
-    <ListItem onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
+    <ListItem onPress={() => enterChat(id, chatName, chatImageUrl)} key={id} bottomDivider>
       <Avatar
         rounded
         source={{

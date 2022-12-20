@@ -1,6 +1,6 @@
 # Signal
 
-Don't forget passwords mismatch
+Don't forget image url in chatscreen header
 
 ## For Own Reference
 

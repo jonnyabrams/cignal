@@ -28,7 +28,7 @@ type ChatScreenNavigationProp = NativeStackNavigationProp<
 
 type Props = {
   navigation: ChatScreenNavigationProp;
-  route: { params: { id: string; chatName: string } };
+  route: { params: { id: string; chatName: string; chatImageUrl: string } };
 };
 
 const ChatScreen = ({ navigation, route }: Props) => {
@@ -45,7 +45,7 @@ const ChatScreen = ({ navigation, route }: Props) => {
           <Avatar
             rounded
             source={{
-              uri: "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
+              uri: route.params.chatImageUrl || "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
             }}
           />
           <Text style={styles.headerCenterText}>{route.params.chatName}</Text>

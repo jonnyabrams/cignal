@@ -12,7 +12,7 @@ export type RootStackParamList = {
   Register: undefined;
   Home: undefined;
   AddChat: undefined;
-  Chat: { id: string; chatName: string };
+  Chat: { id: string; chatName: string; chatImageUrl: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

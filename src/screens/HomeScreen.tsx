@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -92,10 +91,11 @@ const HomeScreen = ({ navigation }: Props) => {
     });
   }, [navigation]);
 
-  const enterChat = (id: string, chatName: string) => {
+  const enterChat = (id: string, chatName: string, chatImageUrl: string) => {
     navigation.navigate("Chat", {
       id,
       chatName,
+      chatImageUrl
     });
   };
 
